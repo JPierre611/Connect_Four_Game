@@ -67,6 +67,11 @@ function findSpotForCol(x) {
 
 function placeInTable(y, x) {
   // TODO: make a div and insert into correct table cell
+  const playedPiece = document.createElement("div");
+  playedPiece.setAttribute("class", "piece");
+  currPlayer === 1 ? playedPiece.setAttribute("class", "p1") : playedPiece.setAttribute("class", "p2");
+  const cell = document.getElementById(`${y}-${x}`);
+  cell.append(playedPiece);
 }
 
 /** endGame: announce game end */
@@ -79,7 +84,7 @@ function endGame(msg) {
 
 function handleClick(evt) {
   // get x from ID of clicked cell
-  // SVGAnimatedLength x = +evt.target.id;
+  x = evt.target.id;
 
   // get next spot in column (if none, ignore click)
   let y = findSpotForCol(x);
