@@ -56,11 +56,16 @@ function makeHtmlBoard() {
   }
 }
 
-/** findSpotForCol: given column x, return top empty y (null if filled) */
+/** findSpotForCol: given column x, return the lowest empty y (null if filled) */
 
 function findSpotForCol(x) {
   // TODO: write the real version of this, rather than always returning 0
-  return 0;
+  const col = [];
+  for (let i = 0; i < HEIGHT; i++) {
+    col[i] = board[i][x];
+  }
+  let y = col.lastIndexOf(null) === -1 ? null : col.lastIndexOf(null);
+  return y;
 }
 
 /** placeInTable: update DOM to place piece into HTML table of board */
@@ -69,7 +74,7 @@ function placeInTable(y, x) {
   // TODO: make a div and insert into correct table cell
   const playedPiece = document.createElement("div");
   playedPiece.setAttribute("class", "piece");
-  currPlayer === 1 ? playedPiece.setAttribute("class", "p1") : playedPiece.setAttribute("class", "p2");
+  currPlayer === 1 ? playedPiece.classList.add("p1") : playedPiece.classList.add("p2");
   const cell = document.getElementById(`${y}-${x}`);
   cell.append(playedPiece);
 }
@@ -78,13 +83,14 @@ function placeInTable(y, x) {
 
 function endGame(msg) {
   // TODO: pop up alert message
+  alert(msg);
 }
 
 /** handleClick: handle click of column top to play piece */
 
 function handleClick(evt) {
   // get x from ID of clicked cell
-  x = evt.target.id;
+  x = +evt.target.id;
 
   // get next spot in column (if none, ignore click)
   let y = findSpotForCol(x);
