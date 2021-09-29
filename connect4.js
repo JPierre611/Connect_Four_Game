@@ -112,7 +112,7 @@ function handleClick(evt) {
   // TODO: check if all cells in board are filled; if so call, call endGame
 
   if (board.every(arr => arr.every(val => val !== null))) {
-    return endGame(`Player ${currPlayer} won!`);
+    return endGame("The game is over! It's a tie!");
   }
 
   // switch players
@@ -139,6 +139,9 @@ function checkForWin() {
   }
 
   // TODO: read and understand this code. Add comments to help you.
+  // The following code checks every single cell in the board and determines
+  // if together with the three other cells that would make it the beginner
+  // of a 4-cell combination are all legal cells and all have the current player color.
 
   for (let y = 0; y < HEIGHT; y++) {
     for (let x = 0; x < WIDTH; x++) {
