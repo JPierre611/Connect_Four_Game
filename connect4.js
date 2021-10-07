@@ -64,7 +64,7 @@ function findSpotForCol(x) {
   for (let i = 0; i < HEIGHT; i++) {
     col[i] = board[i][x];
   }
-  let y = col.lastIndexOf(null) === -1 ? null : col.lastIndexOf(null);
+  const y = col.lastIndexOf(null) === -1 ? null : col.lastIndexOf(null);
   return y;
 }
 
@@ -90,10 +90,10 @@ function endGame(msg) {
 
 function handleClick(evt) {
   // get x from ID of clicked cell
-  x = +evt.target.id;
+  const x = +evt.target.id;
 
   // get next spot in column (if none, ignore click)
-  let y = findSpotForCol(x);
+  const y = findSpotForCol(x);
   if (y === null) {
     return;
   }
